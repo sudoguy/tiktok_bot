@@ -33,14 +33,14 @@ jobs:
     - name: Install Poetry
       run: |
         pip install --user poetry
-        source $HOME/.poetry/env
+        poetry shell
     - name: Install dependencies
       run: |
-        source $HOME/.poetry/env
+        source `poetry env info -p`
         poetry install
     - name: Test
       run: |
-        source $HOME/.poetry/env
+        source `poetry env info -p`
         poetry run pytest -q tests
 
   MacOS:
@@ -59,14 +59,14 @@ jobs:
     - name: Install Poetry
       run: |
         pip install --user poetry
-        source $HOME/.poetry/env
+        poetry shell
     - name: Install dependencies
       run: |
-        source $HOME/.poetry/env
+        source `poetry env info -p`
         poetry install
     - name: Test
       run: |
-        source $HOME/.poetry/env
+        source `poetry env info -p`
         poetry run pytest -q tests
 
   Windows:
@@ -85,12 +85,10 @@ jobs:
     - name: Install Poetry
       run: |
         pip install --user poetry
-        SET PATH=%USERPROFILE%\\.poetry\\bin;%PATH%
+        poetry shell
     - name: Install dependencies
       run: |
-        SET PATH=%USERPROFILE%\\.poetry\\bin;%PATH%
         poetry install
     - name: Test
       run: |
-        SET PATH=%USERPROFILE%\\.poetry\\bin;%PATH%
         poetry run pytest -q tests
