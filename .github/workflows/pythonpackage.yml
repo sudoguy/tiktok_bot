@@ -32,14 +32,19 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install Poetry
       run: |
+        PATH=$PATH:/home/runner/.local/bin
+        
         pip install --user poetry
-        export PATH=$PATH:/home/runner/.local/bin
         poetry shell
     - name: Install dependencies
       run: |
+        PATH=$PATH:/home/runner/.local/bin
+        
         poetry install
     - name: Test
       run: |
+        PATH=$PATH:/home/runner/.local/bin
+        
         poetry run pytest -q tests
 
   MacOS:
@@ -57,14 +62,19 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install Poetry
       run: |
-        export PATH=$PATH:/home/runner/.local/bin
+        PATH=$PATH:/home/runner/.local/bin
+        
         pip install --user poetry
         poetry shell
     - name: Install dependencies
       run: |
+        PATH=$PATH:/home/runner/.local/bin
+        
         poetry install
     - name: Test
       run: |
+        PATH=$PATH:/home/runner/.local/bin
+        
         poetry run pytest -q tests
 
   Windows:
