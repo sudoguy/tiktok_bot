@@ -35,6 +35,8 @@ jobs:
         PATH=$PATH:/home/runner/.local/bin
         
         pip install --user poetry
+
+        poetry config settings.virtualenvs.create false
         poetry shell
     - name: Install dependencies
       run: |
@@ -65,6 +67,8 @@ jobs:
         PATH=$PATH:/Users/runner/.local/bin
         
         pip install --user poetry
+        
+        poetry config settings.virtualenvs.create false
         poetry shell
     - name: Install dependencies
       run: |
