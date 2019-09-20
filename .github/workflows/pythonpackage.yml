@@ -37,11 +37,9 @@ jobs:
         poetry shell
     - name: Install dependencies
       run: |
-        source `poetry env info -p`
         poetry install
     - name: Test
       run: |
-        source `poetry env info -p`
         poetry run pytest -q tests
 
   MacOS:
@@ -64,11 +62,9 @@ jobs:
         poetry shell
     - name: Install dependencies
       run: |
-        source `poetry env info -p`
         poetry install
     - name: Test
       run: |
-        source `poetry env info -p`
         poetry run pytest -q tests
 
   Windows:
