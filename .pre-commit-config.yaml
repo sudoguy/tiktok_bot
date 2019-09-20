@@ -3,4 +3,4 @@ repos:
     rev: stable
     hooks:
     - id: black
-      types: [python]
+      files: '\.py$'
