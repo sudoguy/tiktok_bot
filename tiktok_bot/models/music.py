@@ -29,7 +29,7 @@ class MusicTrack(BaseModel):
     owner_handle: str
 
     # The ID of the owner of the track
-    owner_id: str
+    owner_id: str = None
 
     # The nickname of the owner of the track
     owner_nickname: str

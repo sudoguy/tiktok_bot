@@ -174,10 +174,10 @@ class Post(BaseModel):
     status: PostStatus
 
     # Information about the sticker used in the post
-    sticker_detail: StickerInfo
+    sticker_detail: StickerInfo = None
 
     # The ID of the sticker used in the post (looks to be deprecated by sticker_detail)
-    stickers: str
+    stickers: str = None
 
     # Tagged users and hashtags used in the description
     text_extra: List[PostTags]

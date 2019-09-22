@@ -2,8 +2,10 @@ from typing import Union
 
 from .request import BaseResponseData, Media
 
+from pydantic import BaseModel
 
-class CommonUserDetails:
+
+class CommonUserDetails(BaseModel):
     # A large version of the user's avatar
     avatar_larger: Media
 

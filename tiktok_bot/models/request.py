@@ -1,5 +1,6 @@
-from typing import List, Optional, Union
 import abc
+from typing import List, Optional, Union
+
 from pydantic import BaseModel
 
 
@@ -136,7 +137,7 @@ class BaseRequestParams(StaticRequestParams, AntiSpamParams):
     _rticket: str
 
 
-class ListRequestParams:
+class ListRequestParams(BaseModel):
     # The number of results to return
     count: int
 
@@ -144,7 +145,7 @@ class ListRequestParams:
     retry_type: Optional[str] = None
 
 
-class TimeOffsetRequestParams:
+class TimeOffsetRequestParams(BaseModel):
     """
     A timestamp in seconds - the most recent results before this time will be listed.
     Use min_time from the response data here for pagination.
@@ -153,7 +154,7 @@ class TimeOffsetRequestParams:
     max_time: int
 
 
-class TimeOffsetResponseParams:
+class TimeOffsetResponseParams(BaseModel):
     # The timestamp in seconds associated with the first result
     max_time: int
 
@@ -161,7 +162,7 @@ class TimeOffsetResponseParams:
     min_time: int
 
 
-class CursorOffsetRequestParams:
+class CursorOffsetRequestParams(BaseModel):
     """
     A timestamp in milliseconds - the most recent results before this time will be listed.
     Use max_cursor from the response data here for pagination. Use 0 for the most recent.
@@ -170,7 +171,7 @@ class CursorOffsetRequestParams:
     max_cursor: int
 
 
-class CursorOffsetResponseParams:
+class CursorOffsetResponseParams(BaseModel):
     # The timestamp in milliseconds associated with the first result
     min_cursor: int
 
@@ -178,7 +179,7 @@ class CursorOffsetResponseParams:
     max_cursor: int
 
 
-class CountOffsetParams:
+class CountOffsetParams(BaseModel):
     # The number of results to skip
     cursor: int
 
@@ -209,6 +210,6 @@ class ListResponseData(BaseResponseData):
     total: Optional[int] = None
 
 
-class Media:
+class Media(BaseModel):
     # A list of HTTP URLs to this media
     url_list: List[str]
