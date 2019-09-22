@@ -33,7 +33,7 @@ jobs:
     - name: Install Poetry
       run: |
         PATH=$PATH:/home/runner/.local/bin
-        
+
         pip install --user poetry
 
         poetry config settings.virtualenvs.create false
@@ -41,12 +41,12 @@ jobs:
     - name: Install dependencies
       run: |
         PATH=$PATH:/home/runner/.local/bin
-        
+
         poetry install
     - name: Test
       run: |
         PATH=$PATH:/home/runner/.local/bin
-        
+
         poetry run pytest -q tests
 
   MacOS:
@@ -65,20 +65,20 @@ jobs:
     - name: Install Poetry
       run: |
         PATH=$PATH:/Users/runner/.local/bin
-        
+
         pip install --user poetry
-        
+
         poetry config settings.virtualenvs.create false
         poetry shell
     - name: Install dependencies
       run: |
         PATH=$PATH:/Users/runner/.local/bin
-        
+
         poetry install
     - name: Test
       run: |
         PATH=$PATH:/Users/runner/.local/bin
-        
+
         poetry run pytest -q tests
 
   Windows:
