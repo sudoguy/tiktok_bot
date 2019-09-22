@@ -233,17 +233,6 @@ six = "*"
 
 [[package]]
 category = "dev"
-description = "Flake8 lint for quotes."
-name = "flake8-quotes"
-optional = false
-python-versions = "*"
-version = "2.1.0"
-
-[package.dependencies]
-flake8 = "*"
-
-[[package]]
-category = "dev"
 description = "A flake8 plugin that helps you write tidier imports."
 name = "flake8-tidy-imports"
 optional = false
@@ -804,7 +793,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["pathlib2", "contextlib2", "unittest2"]
 
 [metadata]
-content-hash = "963b667434366209a45869c239242ff965764e6e2f1aef640cdc4fa852b9808d"
+content-hash = "ab2052af4219ecca6320f4bb4093354122c1eb31aee8674bc6ac3a9406c59fe2"
 python-versions = "^3.6"
 
 [metadata.hashes]
@@ -831,7 +820,6 @@ flake8-comprehensions = ["7b174ded3d7e73edf587e942458b6c1a7c3456d512d9c435deae36
 flake8-deprecated = ["211951854837ced9ec997a75c6e5b957f3536a735538ee0620b76539fd3706cd", "9fa5a0c5c81fb3b34c53a0e4f16cd3f0a3395078cfd4988011cbab5fb0afa7f7"]
 flake8-mutable = ["38fd9dadcbcda6550a916197bc40ed76908119dabb37fbcca30873666c31d2d5", "ee9b77111b867d845177bbc289d87d541445ffcc6029a0c5c65865b42b18c6a6"]
 flake8-print = ["5010e6c138b63b62400da4b06afa33becc5e08bd1fcce9af3752445cf3342f54"]
-flake8-quotes = ["5dbaf668887873f28346fb87943d6da2e4b9f77ce9f2169cff21764a0a4934ed"]
 flake8-tidy-imports = ["1c476aabc6e8db26dc75278464a3a392dba0ea80562777c5f13fd5cdf2646154", "b3f5b96affd0f57cacb6621ed28286ce67edaca807757b51227043ebf7b136a1"]
 h11 = ["acca6a44cb52a32ab442b1779adf0875c443c689e9e028f8d831a3769f9c5208", "f2b1ca39bfed357d1f19ac732913d5f9faa54a5062eca7d2ec3a916cfb7ae4c7"]
 h2 = ["ac377fcf586314ef3177bfd90c12c7826ab0840edeb03f0f24f511858326049e", "b8a32bd282594424c0ac55845377eea13fa54fe4a8db012f3a198ed923dc3ab4"]
