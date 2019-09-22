@@ -10,7 +10,6 @@ repos:
     - id: mixed-line-ending
       args: ['--fix=lf']
     - id: flake8
-      args: ['--config=flake8']
       additional_dependencies: [
       'flake8-blind-except',
       'flake8-commas',
