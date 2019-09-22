@@ -9,6 +9,7 @@ license = "MIT"
 python = "^3.6"
 httpx = "^0.7.2"
 pydantic = "^0.32.2"
+loguru = "^0.3.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.1.2"
