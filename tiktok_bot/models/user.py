@@ -1,8 +1,8 @@
 from typing import Union
 
-from .request import BaseResponseData, Media
-
 from pydantic import BaseModel
+
+from .request import BaseResponseData, Media
 
 
 class CommonUserDetails(BaseModel):

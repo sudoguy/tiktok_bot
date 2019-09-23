@@ -1,4 +1,8 @@
-from .user import CommonUserDetails
+from typing import List
+
+from pydantic import BaseModel
+
+from .music import MusicTrack
 from .request import (
     BaseResponseData,
     CursorOffsetRequestParams,
@@ -6,11 +10,8 @@ from .request import (
     ListRequestParams,
     ListResponseData,
 )
-from .music import MusicTrack
+from .user import CommonUserDetails
 from .video import Video
-
-from pydantic import BaseModel
-from typing import List
 
 
 class PostStatistics(BaseModel):
