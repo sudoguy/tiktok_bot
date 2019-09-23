@@ -32,6 +32,9 @@ class ListFeedRequest(ListRequestParams, CursorOffsetRequestParams):
     # A user agent for your device
     ad_user_agent: str = None
 
+    class Config:
+        use_enum_values = True
+
 
 class ListFeedResponse(ListResponseData, CursorOffsetResponseParams):
     # A list of posts in the feed
