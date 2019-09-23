@@ -15,7 +15,7 @@ class ListFeedRequest(ListRequestParams, CursorOffsetRequestParams):
     type: FeedType
 
     # Your device's current volume level on a scale of 0 to 1, e.g. 0.5
-    volume: int
+    volume: float = 0.5
 
     # How the feed was requested
     pull_type: PullType
