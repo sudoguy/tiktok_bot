@@ -1,4 +1,5 @@
 from tiktok_bot.client import HTTPClient
+from tiktok_bot.models.category import ListCategoriesRequest, ListCategoriesResponse
 from tiktok_bot.models.feed import ListFeedRequest, ListFeedResponse, ListForYouFeedResponse
 
 from .config import DEFAULT_HEADERS, DEFAULT_PARAMS
@@ -34,3 +35,16 @@ class TikTokAPI:
         feed = ListFeedResponse(**response.json())
 
         return feed
+
+    def list_categories(
+        self, list_categories_request: ListCategoriesRequest
+    ) -> ListCategoriesResponse:
+        "Lists popular categories/hashtags."
+
+        url = "aweme/v1/category/list/"
+
+        response = self.client.get(url=url, params=list_categories_request.dict())
+
+        categories = ListCategoriesResponse(**response.json())
+
+        return categories
