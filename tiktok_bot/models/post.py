@@ -25,7 +25,7 @@ class PostStatistics(BaseModel):
     digg_count: int
 
     # The number of times the post has been forwarded (looks unused?)
-    forward_count: int
+    forward_count: int = None
 
     # The number of times the post has been viewed - doesn't appear to be public, so always 0
     play_count: int
@@ -45,7 +45,7 @@ class PostStatus(BaseModel):
     download_status: int
 
     # True if the post is currently being reviewed
-    in_reviewing: bool
+    in_reviewing: bool = None
 
     # True if the post has been deleted
     is_delete: bool
@@ -54,13 +54,13 @@ class PostStatus(BaseModel):
     is_private: bool
 
     # True if the post contains content that is not allowed on the platform
-    is_prohibited: bool
+    is_prohibited: bool = None
 
     # 0 if the post is public
-    private_status: int
+    private_status: int = None
 
     # 1 if the post has been reviewed
-    reviewed: int
+    reviewed: int = None
 
 
 class PostTags(BaseModel):
@@ -93,22 +93,22 @@ class RiskInfo(BaseModel):
 
 class ShareInfo(BaseModel):
     # ???
-    bool_persist: int
+    bool_persist: int = None
 
     # The description used when sharing (if set)
     share_desc: str
 
     # The description used when sharing a link only (if set)
-    share_link_desc: str
+    share_link_desc: str = None
 
     # The quote used when sharing (if set)
-    share_quote: str
+    share_quote: str = None
 
     # The signature used when sharing (if set)
-    share_signature_desc: str
+    share_signature_desc: str = None
 
     # The signature URL used when sharing (if set)
-    share_signature_url: str
+    share_signature_url: str = None
 
     # The title used when sharing
     share_title: str
@@ -130,7 +130,7 @@ class StickerInfo(BaseModel):
 
 class Post(BaseModel):
     # Details about the author
-    author: CommonUserDetails
+    author: CommonUserDetails = None
 
     # The ID of the author
     author_user_id: str
@@ -148,10 +148,10 @@ class Post(BaseModel):
     desc: str
 
     # Details about the music used in the post
-    music: MusicTrack
+    music: MusicTrack = None
 
     # True if the end user should not be provided the option to download the video
-    prevent_download: bool
+    prevent_download: bool = None
 
     # An age rating for the post, e.g. 12
     rate: int
@@ -160,10 +160,10 @@ class Post(BaseModel):
     region: str
 
     # Risk information about the post
-    risk_infos: RiskInfo
+    risk_infos: RiskInfo = None
 
     # Information used when sharing the post
-    share_info: ShareInfo
+    share_info: ShareInfo = None
 
     # A link to the video on the musical.ly website that is used when sharing
     share_url: str

@@ -1,6 +1,6 @@
 from typing import List, Union
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Schema
 
 from .post import Post
 from .request import CountOffsetParams, ListRequestParams, ListResponseData
@@ -24,13 +24,16 @@ class ChallengeInfo(BaseModel):
     is_pgcshow: bool
 
     # An in-app link to the challenge
-    schema: str
+    schema_: str = Schema(default=..., alias="schema")
 
     # The type of challenge - 0 for hashtag?
     type: int
 
     # The number of users who have uploaded a video for the challenge
     user_count: int
+
+    class Config:
+        fields = {"schema_": "schema"}
 
 
 class Category(BaseModel):
