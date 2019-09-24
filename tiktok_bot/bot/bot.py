@@ -28,3 +28,20 @@ class TikTokBot:
         feed = self.api.list_for_you_feed(request)
 
         return feed.aweme_list
+
+    def list_following_feed(self, count: int = 6, cursor: int = 0) -> List[Post]:
+        """
+        Lists posts in the Following feed.
+
+        * Login required
+        """
+        request = ListFeedRequest(
+            count=count,
+            max_cursor=cursor,
+            pull_type=PullType.LoadMore,
+            type=FeedType.Following,
+            is_cold_start=1,
+        )
+        feed = self.api.list_following_feed(request)
+
+        return feed.aweme_list
