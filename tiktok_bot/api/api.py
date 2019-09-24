@@ -1,5 +1,5 @@
 from tiktok_bot.client import HTTPClient
-from tiktok_bot.models.feed import ListFeedRequest, ListForYouFeedResponse
+from tiktok_bot.models.feed import ListFeedRequest, ListFeedResponse, ListForYouFeedResponse
 
 from .config import DEFAULT_HEADERS, DEFAULT_PARAMS
 
@@ -21,5 +21,16 @@ class TikTokAPI:
         response = self.client.get(url=url, params=list_feed_request.dict())
 
         feed = ListForYouFeedResponse(**response.json())
+
+        return feed
+
+    def list_following_feed(self, list_feed_request: ListFeedRequest) -> ListFeedResponse:
+        "Lists posts in the Following feed."
+
+        url = "aweme/v1/feed/"
+
+        response = self.client.get(url=url, params=list_feed_request.dict())
+
+        feed = ListFeedResponse(**response.json())
 
         return feed
