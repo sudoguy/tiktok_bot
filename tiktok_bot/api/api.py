@@ -9,7 +9,6 @@ class TikTokAPI:
     def __init__(self):
         self.client = HTTPClient(
             base_url="https://api2.musical.ly/",
-            host="api2.musical.ly",
             default_headers=DEFAULT_HEADERS,
             default_params=DEFAULT_PARAMS,
         )
