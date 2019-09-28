@@ -43,5 +43,4 @@ DEFAULT_HEADERS = {
     "Connection": "keep-alive",
     "X-Tt-Token": "",
     "sdk-version": "1",
-    "Cookie": "null = 1;",
 }
