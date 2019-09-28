@@ -15,7 +15,9 @@ class HTTPClient:
         self.default_headers = default_headers or {}
         self.default_params = default_params or {}
 
-        self.http_client = Client(base_url=self.base_url, headers=default_headers)
+        self.http_client = Client(
+            base_url=self.base_url, headers=default_headers, params=self.default_params
+        )
 
     def get(self, url: str, params: dict, headers: dict = None):
         custom_headers = headers or {}
@@ -23,9 +25,7 @@ class HTTPClient:
         if not params.get("_rticket"):
             params["_rticket"] = int(round(time() * 1000))
 
-        response = self.http_client.get(
-            url=url, params={**params, **self.default_params}, headers=custom_headers
-        )
+        response = self.http_client.get(url=url, params=params, headers=custom_headers)
 
         return response
 
@@ -35,10 +35,7 @@ class HTTPClient:
         rticket = int(round(time() * 1000))
 
         response = self.http_client.post(
-            url=url,
-            params={**{"_rticket": rticket}, **self.default_params},
-            data=data,
-            headers=custom_headers,
+            url=url, params={"_rticket": rticket}, data=data, headers=custom_headers
         )
 
         return response
