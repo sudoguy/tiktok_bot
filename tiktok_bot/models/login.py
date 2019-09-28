@@ -5,25 +5,25 @@ from pydantic import BaseModel
 
 class LoginRequest(BaseModel):
     # Unsure, but looks to be hard-coded to 1
-    mix_mode: int = None
+    mix_mode: int = 1
 
     # The unique username ("musername") of the user
-    username: str = None
+    username: str = ""
 
     # The email address associated with the user account
-    email: str = None
+    email: str = ""
 
     # The mobile number associated with the user account
-    mobile: str = None
+    mobile: str = ""
 
     # ???
-    account: str = None
+    account: str = ""
 
     # The password to the user account
-    password: str = None
+    password: str = ""
 
     # The captcha answer - only required if a captcha was shown
-    captcha: str = None
+    captcha: str = ""
 
 
 class LoginSuccessData(BaseModel):
