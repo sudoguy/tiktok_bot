@@ -7,7 +7,7 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.6"
-httpx = "^0.7.2"
+httpx = "^0.7.4"
 pydantic = "^0.32.2"
 loguru = "^0.3.2"
 typing-extensions = "^3.7.4"
