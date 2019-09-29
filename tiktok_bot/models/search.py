@@ -15,7 +15,7 @@ class SearchRequest(ListRequestParams, CountOffsetParams):
 
 class UserSearchRequest(SearchRequest):
     # Required - the scope of the search - users = 1.
-    type: int = None
+    type: int = 1
 
 
 class SubstringPosition(BaseModel):

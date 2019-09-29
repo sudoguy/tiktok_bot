@@ -181,7 +181,7 @@ class CursorOffsetResponseParams(BaseModel):
 
 class CountOffsetParams(BaseModel):
     # The number of results to skip
-    cursor: int
+    cursor: int = 0
 
 
 class ExtraResponseData(BaseModel):

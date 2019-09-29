@@ -2,6 +2,7 @@ from tiktok_bot.client import HTTPClient
 from tiktok_bot.models.category import ListCategoriesRequest, ListCategoriesResponse
 from tiktok_bot.models.feed import ListFeedRequest, ListFeedResponse, ListForYouFeedResponse
 from tiktok_bot.models.login import LoginRequest, LoginResponse
+from tiktok_bot.models.search import UserSearchRequest, UserSearchResponse
 from tiktok_bot.models.user import UserProfileResponse
 
 from .config import DEFAULT_HEADERS, DEFAULT_PARAMS
@@ -85,3 +86,14 @@ class TikTokAPI:
         user = UserProfileResponse(**response.json())
 
         return user
+
+    def search_users(self, user_search_request: UserSearchRequest) -> UserSearchResponse:
+        "Searches for users."
+
+        url = "aweme/v1/discover/search/"
+
+        response = self.client.get(url=url, params=user_search_request.dict())
+
+        user_search = UserSearchResponse(**response.json())
+
+        return user_search
