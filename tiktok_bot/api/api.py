@@ -2,6 +2,7 @@ from tiktok_bot.client import HTTPClient
 from tiktok_bot.models.category import ListCategoriesRequest, ListCategoriesResponse
 from tiktok_bot.models.feed import ListFeedRequest, ListFeedResponse, ListForYouFeedResponse
 from tiktok_bot.models.login import LoginRequest, LoginResponse
+from tiktok_bot.models.user import UserProfileResponse
 
 from .config import DEFAULT_HEADERS, DEFAULT_PARAMS
 
@@ -73,3 +74,14 @@ class TikTokAPI:
         categories = ListCategoriesResponse(**response.json())
 
         return categories
+
+    def get_user(self, user_id: str) -> UserProfileResponse:
+        "Gets a user's profile."
+
+        url = "aweme/v1/user/"
+
+        response = self.client.get(url=url, params={"user_id": user_id})
+
+        user = UserProfileResponse(**response.json())
+
+        return user
