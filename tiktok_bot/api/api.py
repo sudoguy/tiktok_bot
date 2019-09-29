@@ -2,7 +2,12 @@ from tiktok_bot.client import HTTPClient
 from tiktok_bot.models.category import ListCategoriesRequest, ListCategoriesResponse
 from tiktok_bot.models.feed import ListFeedRequest, ListFeedResponse, ListForYouFeedResponse
 from tiktok_bot.models.login import LoginRequest, LoginResponse
-from tiktok_bot.models.search import UserSearchRequest, UserSearchResponse
+from tiktok_bot.models.search import (
+    HashtagSearchResponse,
+    SearchRequest,
+    UserSearchRequest,
+    UserSearchResponse,
+)
 from tiktok_bot.models.user import UserProfileResponse
 
 from .config import DEFAULT_HEADERS, DEFAULT_PARAMS
@@ -97,3 +102,14 @@ class TikTokAPI:
         user_search = UserSearchResponse(**response.json())
 
         return user_search
+
+    def search_hashtags(self, hashtag_search_request: SearchRequest) -> HashtagSearchResponse:
+        "Searches for hashtags."
+
+        url = "aweme/v1/challenge/search/"
+
+        response = self.client.get(url=url, params=hashtag_search_request.dict())
+
+        hashtag_search = HashtagSearchResponse(**response.json())
+
+        return hashtag_search
