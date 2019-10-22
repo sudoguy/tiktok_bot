@@ -36,7 +36,7 @@ jobs:
 
         pip install --user poetry==1.0.0b2
 
-        poetry config settings.virtualenvs.create false
+        poetry config virtualenvs.create false
         poetry shell
     - name: Install dependencies
       run: |
@@ -68,7 +68,7 @@ jobs:
 
         pip install --user poetry==1.0.0b2
 
-        poetry config settings.virtualenvs.create false
+        poetry config virtualenvs.create false
         poetry shell
     - name: Install dependencies
       run: |
