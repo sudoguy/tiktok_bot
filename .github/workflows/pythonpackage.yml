@@ -34,7 +34,7 @@ jobs:
       run: |
         PATH=$PATH:/home/runner/.local/bin
 
-        pip install --user poetry==1.0.0b2
+        pip install --pre --user poetry
 
         poetry config virtualenvs.create false
         poetry shell
@@ -66,7 +66,7 @@ jobs:
       run: |
         PATH=$PATH:/Users/runner/.local/bin
 
-        pip install --user poetry==1.0.0b2
+        pip install --pre --user poetry
 
         poetry config virtualenvs.create false
         poetry shell
@@ -96,7 +96,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install Poetry
       run: |
-        pip install --user poetry==1.0.0b2
+        pip install --pre --user poetry
         poetry shell
     - name: Install dependencies
       run: |
