@@ -21,6 +21,9 @@ matrix:
     - python: "pypy3"
     - python: "nightly"
 
+before_install:
+  - pip install --upgrade pip
+
 jobs:
   include:
     - stage: lint
@@ -31,8 +34,7 @@ jobs:
         - pre-commit run --all-files
     - stage: test
       install:
-        - pip install --upgrade pip
-        - pip install poetry
+        - pip install --user --pre poetry
         - poetry install -v
       script:
         - pytest
