@@ -2,7 +2,6 @@ language: python
 
 os:
   - linux
-  - osx
 
 stages:
   - lint
@@ -14,11 +13,6 @@ python:
   - "3.8"
   - "nightly"
   - "pypy3"
-
-matrix:
-  allow_failures:
-    - python: "pypy3"
-    - python: "nightly"
 
 install:
   - pip install --upgrade pip
