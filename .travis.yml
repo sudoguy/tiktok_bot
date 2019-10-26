@@ -22,8 +22,7 @@ matrix:
     - python: "nightly"
 
 install:
-  - pip install --upgrade pip pre-commit
-  - pip install --user --pre poetry
+  - pip install --upgrade pip
 
 script: skip
 
@@ -31,11 +30,13 @@ jobs:
   include:
     - stage: lint
       install:
+        - pip install pre-commit
         - pre-commit install-hooks
       script:
         - pre-commit run --all-files
     - stage: test
       install:
+        - pip install --user --pre poetry
         - poetry install -v
       script:
         - poetry run pytest
