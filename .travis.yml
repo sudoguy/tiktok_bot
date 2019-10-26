@@ -3,7 +3,6 @@ language: python
 os:
   - linux
   - osx
-  - windows
 
 stages:
   - lint
@@ -36,7 +35,7 @@ jobs:
         - pre-commit run --all-files
     - stage: test
       install:
-        - pip install --user --pre poetry
+        - pip install --pre poetry
         - poetry install -v
       script:
         - poetry run pytest
