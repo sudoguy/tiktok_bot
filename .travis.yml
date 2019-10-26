@@ -39,9 +39,6 @@ jobs:
       script:
         - poetry run pytest
 
-script:
- - pytest
-
 cache:
   pip: true
   directories:
