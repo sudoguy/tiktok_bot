@@ -1,0 +1,51 @@
+language: python
+
+os:
+  - linux
+  - osx
+  - windows
+
+stages:
+  - lint
+  - test
+
+python:
+  - "3.6"
+  - "3.7"
+  - "3.8"
+  - "nightly"
+  - "pypy3"
+
+matrix:
+  allow_failures:
+    - python: "pypy3"
+    - python: "nightly"
+
+jobs:
+  include:
+    - stage: lint
+      install:
+        - pip install pre-commit
+        - pre-commit install-hooks
+      script:
+        - pre-commit run --all-files
+    - stage: test
+      install:
+        - pip install --upgrade pip
+        - pip install poetry
+        - poetry install -v
+      script:
+        - pytest
+
+install:
+  - poetry config virtualenvs.in-project true
+  - poetry install
+
+script:
+ - pytest
+
+cache:
+  pip: true
+  directories:
+    - "$HOME/.cache/pre-commit"
+    - .venv
