@@ -37,7 +37,7 @@ jobs:
         - pip install --user --pre poetry
         - poetry install -v
       script:
-        - pytest
+        - poetry run pytest
 
 script:
  - pytest
