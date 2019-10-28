@@ -1,5 +1,6 @@
 from .bot import TikTokBot
+from .client import client
 
-__all__ = ["TikTokBot"]
+__all__ = ["TikTokBot", "client"]
 
 __version__ = "0.1.0"

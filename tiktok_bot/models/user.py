@@ -40,7 +40,7 @@ class CommonUserDetails(BaseModel):
     region: str
 
     # If the user is live, a str ID used to join their stream, else 0
-    room_id: Union[str, int]
+    room_id: Union[str, int] = None
 
     # 1 if the user's profile is set to private
     secret: int

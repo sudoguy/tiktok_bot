@@ -37,11 +37,11 @@ class SubstringPosition(BaseModel):
 
 class UserSearchResult(BaseModel):
     # If the user's nickname contains the search term, this array contains the location of the term
-    position: List[SubstringPosition]
+    position: List[SubstringPosition] = None
 
     # If the user's username (unique_id) contains the search term,
     # this array contains the location of the term
-    uniqid_position: List[SubstringPosition]
+    uniqid_position: List[SubstringPosition] = None
 
     # Information about the user
     user_info: CommonUserDetails

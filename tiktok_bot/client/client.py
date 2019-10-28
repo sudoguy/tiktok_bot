@@ -3,6 +3,8 @@ from typing import Optional
 
 from httpx import Client
 
+from .utils import generate_mas
+
 
 class HTTPClient:
     def __init__(
@@ -22,10 +24,9 @@ class HTTPClient:
     def get(self, url: str, params: dict, headers: Optional[dict] = None):
         custom_headers = headers or {}
 
-        if not params.get("_rticket"):
-            params["_rticket"] = int(round(time() * 1000))
-
-        response = self.http_client.get(url=url, params=params, headers=custom_headers)
+        response = self.http_client.get(
+            url=url, params={**self._generate_params(), **params}, headers=custom_headers
+        )
 
         return response
 
@@ -35,14 +36,18 @@ class HTTPClient:
         custom_headers = headers or {}
         custom_params = params or {}
 
-        if not custom_params.get("_rticket"):
-            custom_params["_rticket"] = int(round(time() * 1000))
-
-        if not custom_params.get("ts"):
-            custom_params["ts"] = custom_params.get("_rticket", int(round(time() * 1000)))
-
         response = self.http_client.post(
-            url=url, params=custom_params, data=data, headers=custom_headers
+            url=url,
+            params={**self._generate_params(), **custom_params},
+            data=data,
+            headers=custom_headers,
         )
 
         return response
+
+    def _generate_params(self):
+        now = str(int(round(time() * 1000)))
+
+        params = {"_rticket": now, "ts": now, "mas": generate_mas(now)}
+
+        return params

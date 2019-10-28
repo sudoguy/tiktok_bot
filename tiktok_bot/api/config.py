@@ -38,7 +38,6 @@ DEFAULT_PARAMS = {
     "device_id": "6594726280552547846",
     "as": "a145cac75e153c5ef36123abc",
     "cp": "ab5ac054ec3175e3e1Yaaeabc123",
-    "mas": "016d48633d67d491135bc9b025d80be9d56c6c0c6ccc66a6abc123",
 }
 # ToDo: Fix this
 DEFAULT_HEADERS = {
