@@ -5,6 +5,7 @@ from tiktok_bot.models.category import Category, ListCategoriesRequest
 from tiktok_bot.models.feed import ListFeedRequest
 from tiktok_bot.models.feed_enums import FeedType, PullType
 from tiktok_bot.models.post import Post
+from tiktok_bot.models.search import UserSearchRequest, UserSearchResult
 
 
 class TikTokBot:
@@ -16,6 +17,15 @@ class TikTokBot:
         categories = self.api.list_categories(request)
 
         return categories.category_list
+
+    def search_user(self, keyword: str, count: int = 10, cursor: int = 0) -> List[UserSearchResult]:
+        request = UserSearchRequest(keyword=keyword, count=count, cursor=cursor)
+
+        user_search = self.api.search_users(request)
+
+        users = [user.user_info for user in user_search.user_list]
+
+        return users
 
     def list_for_you_feed(self, count: int = 6, cursor: int = 0) -> List[Post]:
         request = ListFeedRequest(
