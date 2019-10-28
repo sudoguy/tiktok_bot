@@ -22,7 +22,6 @@ DEFAULT_PARAMS = {
     "mcc_mnc": "23001",
     "is_my_cn": 0,
     "fp": "",
-    "iid": "6620659482206930694",
     "app_language": "en",
     "language": "en",
     "region": "US",
@@ -35,9 +34,10 @@ DEFAULT_PARAMS = {
     "pass-route": 1,
     "app_type": "normal",
     # ToDo: Make it dynamic
+    "iid": "6620659482206930694",
     "device_id": "6594726280552547846",
 }
-# ToDo: Fix this
+
 DEFAULT_HEADERS = {
     "Host": "api2.musical.ly",
     "X-SS-TC": "0",
