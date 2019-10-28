@@ -139,7 +139,7 @@ class BaseRequestParams(StaticRequestParams, AntiSpamParams):
 
 class ListRequestParams(BaseModel):
     # The number of results to return
-    count: int
+    count: int = 10
 
     # How the request will be retried on failure - defaults to "no_retry"
     retry_type: Optional[str] = None

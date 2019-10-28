@@ -60,7 +60,7 @@ class HashtagSearchResult(BaseModel):
     challenge_info: ChallengeInfo
 
     # If the hashtag contains the search term, this array contains the location of the term
-    position: List[SubstringPosition]
+    position: List[SubstringPosition] = None
 
 
 class HashtagSearchResponse(ListResponseData, CountOffsetParams):
