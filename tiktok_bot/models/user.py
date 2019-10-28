@@ -16,7 +16,7 @@ class CommonUserDetails(BaseModel):
     avatar_thumb: Media
 
     # The timestamp in seconds when the user's account was created
-    create_time: int
+    create_time: int = None
 
     # The badge name with a verified user (e.g. comedian, style guru)
     custom_verify: str
