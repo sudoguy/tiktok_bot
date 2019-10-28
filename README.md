@@ -1,2 +1,2 @@
 # tiktok-bot
-[![Actions Status](https://github.com/sudoguy/tiktok_bot/workflows/Main/badge.svg)](https://github.com/sudoguy/tiktok_bot/actions)
+[![Build Status](https://travis-ci.org/sudoguy/tiktok_bot.svg?branch=master)](https://travis-ci.org/sudoguy/tiktok_bot)
