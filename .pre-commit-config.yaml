@@ -17,7 +17,7 @@ repos:
       args: ['--in-place', '--remove-all-unused-imports', '--remove-unused-variable']
 
 - repo: https://github.com/asottile/seed-isort-config
-  rev: v1.9.2
+  rev: v1.9.3
   hooks:
   - id: seed-isort-config
 - repo: https://github.com/pre-commit/mirrors-isort
