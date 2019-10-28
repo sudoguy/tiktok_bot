@@ -36,8 +36,6 @@ DEFAULT_PARAMS = {
     "app_type": "normal",
     # ToDo: Make it dynamic
     "device_id": "6594726280552547846",
-    "as": "a145cac75e153c5ef36123abc",
-    "cp": "ab5ac054ec3175e3e1Yaaeabc123",
 }
 # ToDo: Fix this
 DEFAULT_HEADERS = {

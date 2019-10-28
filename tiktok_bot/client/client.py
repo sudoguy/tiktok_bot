@@ -3,7 +3,7 @@ from typing import Optional
 
 from httpx import Client
 
-from .utils import generate_mas
+from .utils import generate_as, generate_cp, generate_mas
 
 
 class HTTPClient:
@@ -48,6 +48,12 @@ class HTTPClient:
     def _generate_params(self):
         now = str(int(round(time() * 1000)))
 
-        params = {"_rticket": now, "ts": now, "mas": generate_mas(now)}
+        params = {
+            "_rticket": now,
+            "ts": now,
+            "mas": generate_mas(now),
+            "as": generate_as(now),
+            "cp": generate_cp(now),
+        }
 
         return params
