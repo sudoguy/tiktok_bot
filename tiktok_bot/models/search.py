@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from pydantic import BaseModel
 from typing_extensions import Literal
@@ -37,11 +37,11 @@ class SubstringPosition(BaseModel):
 
 class UserSearchResult(BaseModel):
     # If the user's nickname contains the search term, this array contains the location of the term
-    position: List[SubstringPosition] = None
+    position: Optional[List[SubstringPosition]] = None
 
     # If the user's username (unique_id) contains the search term,
     # this array contains the location of the term
-    uniqid_position: List[SubstringPosition] = None
+    uniqid_position: Optional[List[SubstringPosition]] = None
 
     # Information about the user
     user_info: CommonUserDetails
@@ -60,7 +60,7 @@ class HashtagSearchResult(BaseModel):
     challenge_info: ChallengeInfo
 
     # If the hashtag contains the search term, this array contains the location of the term
-    position: List[SubstringPosition] = None
+    position: Optional[List[SubstringPosition]] = None
 
 
 class HashtagSearchResponse(ListResponseData, CountOffsetParams):

@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from pydantic import BaseModel
 from typing_extensions import Literal
@@ -22,7 +22,7 @@ class Comment(BaseModel):
     digg_count: int
 
     # If this comment is replying to a comment, this array contains the original comment
-    reply_comment: List["Comment"] = None
+    reply_comment: Optional[List["Comment"]] = None
 
     # If this comment is replying to a comment, the ID of that comment - "0" if not a reply
     reply_id: str
@@ -48,7 +48,7 @@ class ListCommentsRequest(ListRequestParams, CountOffsetParams):
     aweme_id: str
 
     # ??? - default is 2
-    comment_style: int = None
+    comment_style: Optional[int] = None
 
     # ???
     digged_cid = None
@@ -69,7 +69,7 @@ class PostCommentRequest(BaseModel):
     text: str
 
     # The ID of the comment that is being replied to
-    reply_id: str = None
+    reply_id: Optional[str] = None
 
     # Details about any tags in the comment
     text_extra: List[Tag]

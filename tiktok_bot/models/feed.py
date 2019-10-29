@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from .feed_enums import FeedType, PullType
 from .post import Post
@@ -21,16 +21,16 @@ class ListFeedRequest(ListRequestParams, CursorOffsetRequestParams):
     pull_type: PullType
 
     # ??? - empty
-    req_from: str = None
+    req_from: Optional[str] = None
 
     # ??? - 0
-    is_cold_start: int = None
+    is_cold_start: Optional[int] = None
 
     # ???
-    gaid: str = None
+    gaid: Optional[str] = None
 
     # A user agent for your device
-    ad_user_agent: str = None
+    ad_user_agent: Optional[str] = None
 
     class Config:
         use_enum_values = True

@@ -1,3 +1,5 @@
+from typing import Optional
+
 from pydantic import BaseModel
 
 from .request import Media
@@ -29,7 +31,7 @@ class MusicTrack(BaseModel):
     owner_handle: str
 
     # The ID of the owner of the track
-    owner_id: str = None
+    owner_id: Optional[str] = None
 
     # The nickname of the owner of the track
     owner_nickname: str

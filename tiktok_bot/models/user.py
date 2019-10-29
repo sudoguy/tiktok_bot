@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Optional, Union
 
 from pydantic import BaseModel
 
@@ -16,7 +16,7 @@ class CommonUserDetails(BaseModel):
     avatar_thumb: Media
 
     # The timestamp in seconds when the user's account was created
-    create_time: int = None
+    create_time: Optional[int] = None
 
     # The badge name with a verified user (e.g. comedian, style guru)
     custom_verify: str
@@ -40,7 +40,7 @@ class CommonUserDetails(BaseModel):
     region: str
 
     # If the user is live, a str ID used to join their stream, else 0
-    room_id: Union[str, int] = None
+    room_id: Optional[Union[str, int]] = None
 
     # 1 if the user's profile is set to private
     secret: int
