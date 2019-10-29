@@ -1,4 +1,8 @@
+import sys
 from typing import List
+
+from loguru import logger
+from typing_extensions import Literal
 
 from tiktok_bot.api import TikTokAPI
 from tiktok_bot.models.category import Category, ListCategoriesRequest
@@ -10,8 +14,11 @@ from tiktok_bot.models.user import CommonUserDetails, UserProfile
 
 
 class TikTokBot:
-    def __init__(self):
+    def __init__(self, log_level: Literal["INFO", "DEBUG"] = "DEBUG"):
         self.api = TikTokAPI()
+
+        logger.remove()
+        logger.add(sys.stderr, level=log_level)
 
     def list_categories(self, count: int = 10, cursor: int = 0) -> List[Category]:
         request = ListCategoriesRequest(count=count, cursor=cursor)

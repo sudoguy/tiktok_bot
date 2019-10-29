@@ -186,7 +186,7 @@ class CountOffsetParams(BaseModel):
 
 class ExtraResponseData(BaseModel):
     # ???
-    fatal_item_ids: List[int] = None
+    fatal_item_ids: Optional[List[int]] = None
 
     # A log ID for this request
     logid: Optional[str] = None

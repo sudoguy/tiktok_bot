@@ -1,7 +1,9 @@
 from time import time
 from typing import Optional
+from uuid import uuid4
 
 from httpx import Client
+from loguru import logger
 
 from .utils import generate_as, generate_cp, generate_mas
 
@@ -23,10 +25,24 @@ class HTTPClient:
 
     def get(self, url: str, params: dict, headers: Optional[dict] = None):
         custom_headers = headers or {}
+        all_params = {**self._generate_params(), **params}
 
-        response = self.http_client.get(
-            url=url, params={**self._generate_params(), **params}, headers=custom_headers
+        request_uuid = uuid4().hex
+        # Add to logger request_uuid
+        logger_ctx = logger.bind(request_uuid=request_uuid)
+
+        logger_ctx.debug(
+            f"Sending request to {url}", params=all_params, custom_headers=custom_headers
         )
+        response = self.http_client.get(url=url, params=all_params, headers=custom_headers)
+
+        body = response.text or "is empty!"
+
+        logger_ctx.debug(f"Response return status_code: {response.status_code}, body: {body}")
+
+        for cookie_name, cookie_data in response.cookies.items():
+            self.http_client.cookies.set(cookie_name, cookie_data)
+            logger_ctx.debug(f"New cookies: {dict(response.cookies)}")
 
         return response
 
@@ -35,13 +51,27 @@ class HTTPClient:
     ):
         custom_headers = headers or {}
         custom_params = params or {}
+        # merge parameters
+        all_params = {**self._generate_params(), **custom_params}
+
+        request_uuid = uuid4().hex
+        # Bind to logger request_uuid
+        logger_ctx = logger.bind(request_uuid=request_uuid)
+
+        logger_ctx.debug(
+            f"Sending request to {url}", params=all_params, custom_headers=custom_headers, data=data
+        )
 
         response = self.http_client.post(
-            url=url,
-            params={**self._generate_params(), **custom_params},
-            data=data,
-            headers=custom_headers,
+            url=url, params=all_params, data=data, headers=custom_headers,
         )
+
+        body = response.text or "is empty!"
+        logger_ctx.debug(f"Response return status_code: {response.status_code}, body: {body}")
+
+        for cookie_name, cookie_data in response.cookies.items():
+            self.http_client.cookies.set(cookie_name, cookie_data)
+            logger_ctx.debug(f"New cookies: {dict(response.cookies)}")
 
         return response
 
