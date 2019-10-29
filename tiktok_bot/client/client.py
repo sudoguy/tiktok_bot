@@ -84,6 +84,7 @@ class HTTPClient:
             "mas": generate_mas(now),
             "as": generate_as(now),
             "cp": generate_cp(now),
+            "idfa": str(uuid4()).upper(),
         }
 
         return params
