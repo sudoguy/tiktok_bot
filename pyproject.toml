@@ -3,6 +3,18 @@ name = "tiktok_bot"
 version = "0.4.1"
 description = "Tik Tok API"
 authors = ["Evgeny Kemerov <eskemerov@gmail.com>"]
+readme = "README.md"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+keywords = ["tiktok", "bot", "api", "wrapper", "tiktokbot"]
 license = "MIT"
 
 [tool.poetry.dependencies]
