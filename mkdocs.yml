@@ -1,0 +1,20 @@
+site_name: TikTok Bot
+site_description: Free TikTok bot for Python.
+
+theme:
+    name: "material"
+
+repo_name: sudoguy/tiktok_bot
+repo_url: https://github.com/sudoguy/tiktok-bot
+edit_uri: ""
+
+nav:
+    - Introduction: 'index.md'
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - mkautodoc
+
+extra_css:
+    - css/custom.css
