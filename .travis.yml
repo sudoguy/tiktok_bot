@@ -54,7 +54,6 @@ deploy:
     condition: $TRAVIS_BUILD_STAGE_NAME = Deploy
     repo: sudoguy/tiktok_bot
     tags: true
-    python: 3.7
 
 notifications:
   email:
