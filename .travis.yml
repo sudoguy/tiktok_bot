@@ -60,6 +60,9 @@ notifications:
     on_success: change
     on_failure: always
 
+before_cache:
+  - rm -f $HOME/.cache/pip/log/debug.log
+
 cache:
   pip: true
   directories:
