@@ -5,6 +5,7 @@ repos:
     - id: check-added-large-files
     - id: debug-statements
     - id: end-of-file-fixer
+      exclude: '.bumpversion.cfg'
     - id: check-symlinks
     - id: trailing-whitespace
     - id: mixed-line-ending
