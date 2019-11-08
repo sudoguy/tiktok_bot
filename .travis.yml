@@ -6,6 +6,8 @@ os:
 stages:
   - lint
   - test
+  - name: deploy
+    if: tag IS present
 
 python:
   - "3.6"
@@ -33,17 +35,25 @@ jobs:
         - poetry install -v
       script:
         - poetry run pytest
+    - stage: deploy
+      script:
+        - echo Deploying to PyPI...
 
 before_deploy:
-  - pip install --pre poetry
+  - pip install --upgrade pip
+  - pip install poetry
+  - poetry config http-basic.pypi $PYPI_USER $PYPI_PASSWORD
+  - poetry build
 
 deploy:
   provider: script
+  script: poetry publish
   skip_cleanup: true
-  script: poetry build && poetry publish -u $PYPI_USER -p $PYPI_PASSWORD
   on:
-    tags: true
+    all_branches: true  # Travis recognizes tag names as "branches"
+    condition: $TRAVIS_BUILD_STAGE_NAME = Deploy
     repo: sudoguy/tiktok_bot
+    tags: true
     python: 3.7
 
 notifications:
