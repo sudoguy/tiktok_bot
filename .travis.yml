@@ -39,7 +39,8 @@ deploy:
     script: poetry build && poetry publish -u $PYPI_USER -p $PYPI_PASSWORD
     on:
       branch: master
-      tags: true
+      condition: $TRAVIS_TAG = true
+      python: 3.7
 
 cache:
   pip: true
