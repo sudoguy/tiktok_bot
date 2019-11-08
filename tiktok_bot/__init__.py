@@ -3,4 +3,4 @@ from .client import client
 
 __all__ = ["TikTokBot", "client"]
 
-__version__ = "0.4.16"
+__version__ = "0.4.17"
