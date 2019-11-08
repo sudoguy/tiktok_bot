@@ -34,8 +34,12 @@ jobs:
       script:
         - poetry run pytest
 
-after_success:
-  - if [ "$TRAVIS_TAG" = "true" ] && [ "$TRAVIS_BRANCH" = "master" ]; poetry build && poetry publish -u $PYPI_USER -p $PYPI_PASSWORD; fi
+deploy:
+  - provider: script
+    script: poetry build && poetry publish -u $PYPI_USER -p $PYPI_PASSWORD
+    on:
+      branch: master
+      tags: true
 
 cache:
   pip: true
