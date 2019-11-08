@@ -39,8 +39,12 @@ deploy:
     script: poetry build && poetry publish -u $PYPI_USER -p $PYPI_PASSWORD
     on:
       tags: true
-      condition: git branch --contains $(git rev-parse $(git tag -l --points-at HEAD)) | grep "^\* master$" = * master
       python: 3.7
+
+notifications:
+  email:
+    on_success: change
+    on_failure: always
 
 cache:
   pip: true
