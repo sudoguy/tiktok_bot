@@ -4,6 +4,7 @@ version = "0.4.10"
 description = "Tik Tok API"
 authors = ["Evgeny Kemerov <eskemerov@gmail.com>"]
 readme = "README.md"
+homepage = "https://github.com/sudoguy/tiktok_bot/"
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Environment :: Console",
