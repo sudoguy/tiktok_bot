@@ -13,7 +13,7 @@ from tiktok_bot.models.user import CommonUserDetails, UserProfile
 
 
 class TikTokBot:
-    def __init__(self, log_level: Literal["INFO", "DEBUG"] = "DEBUG"):
+    def __init__(self, log_level: Literal["INFO", "DEBUG"] = "INFO"):
         self.api = TikTokAPI()
 
         logger.remove()
@@ -37,17 +37,10 @@ class TikTokBot:
 
         return users
 
-    def list_for_you_feed(self, count: int = 6, cursor: int = 0) -> List[Post]:
-        request = ListFeedRequest(
-            count=count,
-            max_cursor=cursor,
-            pull_type=PullType.LoadMore,
-            type=FeedType.ForYou,
-            is_cold_start=1,
-        )
-        feed = self.api.list_for_you_feed(request)
+    def list_for_you_feed(self, count: int = 6) -> List[Post]:
+        feed = self.api.list_for_you_feed(count)
 
-        return feed.aweme_list
+        return feed
 
     def list_following_feed(self, count: int = 6, cursor: int = 0) -> List[Post]:
         """

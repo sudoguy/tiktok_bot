@@ -6,7 +6,9 @@ from loguru import logger
 from tiktok_bot.client import HTTPClient
 from tiktok_bot.models.category import ListCategoriesRequest, ListCategoriesResponse
 from tiktok_bot.models.feed import ListFeedRequest, ListFeedResponse, ListForYouFeedResponse
+from tiktok_bot.models.feed_enums import FeedType, PullType
 from tiktok_bot.models.login import LoginRequest, LoginResponse
+from tiktok_bot.models.post import Post
 from tiktok_bot.models.search import (
     HashtagSearchResponse,
     SearchRequest,
@@ -52,7 +54,7 @@ class TikTokAPI:
 
         return self.login(request)
 
-    def list_for_you_feed(self, list_feed_request: ListFeedRequest) -> ListForYouFeedResponse:
+    def _list_for_you_feed(self, list_feed_request: ListFeedRequest) -> ListForYouFeedResponse:
         "Lists posts in the For You feed."
 
         url = "aweme/v1/feed/"
@@ -60,6 +62,31 @@ class TikTokAPI:
         response = self.client.get(url=url, params=list_feed_request.dict())
 
         feed = ListForYouFeedResponse(**response.json())
+
+        return feed
+
+    def list_for_you_feed(self, count: int) -> List[Post]:
+        "Lists posts in the For You feed with paginate."
+        feed: List[Post] = []
+
+        logger.info(f"Getting {count} posts from your feed")
+
+        for cursor in itertools.count(start=0, step=6):
+            request = ListFeedRequest(
+                count=count,
+                max_cursor=cursor,
+                pull_type=PullType.LoadMore,
+                type=FeedType.ForYou,
+                is_cold_start=1,
+            )
+            response = self._list_for_you_feed(list_feed_request=request)
+
+            feed += response.aweme_list
+
+            if not response.has_more or len(feed) >= count:
+                feed = feed[:count]
+                logger.info(f"Found {len(feed)} results")
+                break
 
         return feed
 
