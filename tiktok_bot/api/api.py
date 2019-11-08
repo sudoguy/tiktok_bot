@@ -1,3 +1,8 @@
+import itertools
+from typing import List
+
+from loguru import logger
+
 from tiktok_bot.client import HTTPClient
 from tiktok_bot.models.category import ListCategoriesRequest, ListCategoriesResponse
 from tiktok_bot.models.feed import ListFeedRequest, ListFeedResponse, ListForYouFeedResponse
@@ -7,6 +12,7 @@ from tiktok_bot.models.search import (
     SearchRequest,
     UserSearchRequest,
     UserSearchResponse,
+    UserSearchResult,
 )
 from tiktok_bot.models.user import UserProfileResponse
 
@@ -92,7 +98,7 @@ class TikTokAPI:
 
         return user
 
-    def search_users(self, user_search_request: UserSearchRequest) -> UserSearchResponse:
+    def _search_users(self, user_search_request: UserSearchRequest) -> UserSearchResponse:
         "Searches for users."
 
         url = "aweme/v1/discover/search/"
@@ -102,6 +108,26 @@ class TikTokAPI:
         user_search = UserSearchResponse(**response.json())
 
         return user_search
+
+    def search_users(self, keyword: str, count: int) -> List[UserSearchResult]:
+        "Searches for users with paginate."
+
+        results: List[UserSearchResult] = []
+
+        logger.info(f'Search {count} users with keyword: "{keyword}"')
+
+        for cursor in itertools.count(start=0, step=10):
+            user_search_request = UserSearchRequest(keyword=keyword, cursor=cursor)
+            response = self._search_users(user_search_request=user_search_request)
+
+            results += response.user_list
+
+            if not response.has_more or len(results) >= count:
+                results = results[:count]
+                logger.info(f"Found {len(results)} results")
+                break
+
+        return results
 
     def search_hashtags(self, hashtag_search_request: SearchRequest) -> HashtagSearchResponse:
         "Searches for hashtags."
