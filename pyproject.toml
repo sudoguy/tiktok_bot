@@ -45,6 +45,7 @@ mypy = "^0.740"
 mkdocs = "^1.0.4"
 mkdocs-material = "^4.4.3"
 mkautodoc = "^0.1.0"
+bump2version = "^0.5.11"
 
 [tool.black]
 line-length = 100
