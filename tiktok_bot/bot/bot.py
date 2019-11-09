@@ -26,7 +26,7 @@ class TikTokBot:
         return categories.category_list
 
     def get_user_by_id(self, user_id: str) -> UserProfile:
-        user_response = self.api.get_user(user_id)
+        user_response = self.api.get_user(user_id=user_id)
 
         return user_response.user
 
@@ -38,7 +38,7 @@ class TikTokBot:
         return users
 
     def list_for_you_feed(self, count: int = 6) -> List[Post]:
-        feed = self.api.list_for_you_feed(count)
+        feed = self.api.list_for_you_feed(count=count)
 
         return feed
 
