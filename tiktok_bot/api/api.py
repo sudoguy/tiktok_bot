@@ -2,6 +2,7 @@ import itertools
 from typing import List
 
 from loguru import logger
+from tqdm import tqdm
 
 from tiktok_bot.client import HTTPClient
 from tiktok_bot.models.category import ListCategoriesRequest, ListCategoriesResponse
@@ -71,22 +72,25 @@ class TikTokAPI:
 
         logger.info(f"Getting {count} posts from your feed")
 
-        for cursor in itertools.count(start=0, step=6):
-            request = ListFeedRequest(
-                count=count,
-                max_cursor=cursor,
-                pull_type=PullType.LoadMore,
-                type=FeedType.ForYou,
-                is_cold_start=1,
-            )
-            response = self._list_for_you_feed(list_feed_request=request)
+        with tqdm(total=count, desc="List for you feed") as pbar:
+            for cursor in itertools.count(start=0, step=6):
+                request = ListFeedRequest(
+                    count=count,
+                    max_cursor=cursor,
+                    pull_type=PullType.LoadMore,
+                    type=FeedType.ForYou,
+                    is_cold_start=1,
+                )
+                response = self._list_for_you_feed(list_feed_request=request)
 
-            feed += response.aweme_list
+                feed += response.aweme_list
 
-            if not response.has_more or len(feed) >= count:
-                feed = feed[:count]
-                logger.info(f"Found {len(feed)} results")
-                break
+                pbar.update(len(response.aweme_list))
+
+                if not response.has_more or len(feed) >= count:
+                    feed = feed[:count]
+                    logger.info(f"Found {len(feed)} results")
+                    break
 
         return feed
 
@@ -143,16 +147,18 @@ class TikTokAPI:
 
         logger.info(f'Search {count} users with keyword: "{keyword}"')
 
-        for cursor in itertools.count(start=0, step=10):
-            user_search_request = UserSearchRequest(keyword=keyword, cursor=cursor)
-            response = self._search_users(user_search_request=user_search_request)
+        with tqdm(total=count, desc="Searching users") as pbar:
+            for cursor in itertools.count(start=0, step=10):
+                user_search_request = UserSearchRequest(keyword=keyword, cursor=cursor)
+                response = self._search_users(user_search_request=user_search_request)
 
-            results += response.user_list
+                results += response.user_list
+                pbar.update(len(response.user_list))
 
-            if not response.has_more or len(results) >= count:
-                results = results[:count]
-                logger.info(f"Found {len(results)} results")
-                break
+                if not response.has_more or len(results) >= count:
+                    results = results[:count]
+                    logger.info(f"Found {len(results)} results")
+                    break
 
         return results
 
