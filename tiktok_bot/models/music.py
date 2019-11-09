@@ -10,13 +10,13 @@ class MusicTrack(BaseModel):
     author: str
 
     # A HD version of the music's cover art
-    cover_hd: Media
+    cover_hd: Optional[Media] = None
 
     # A large version of the music's cover art
-    cover_large: Media
+    cover_large: Optional[Media] = None
 
     # A medium version of the music's cover art
-    cover_medium: Media
+    cover_medium: Optional[Media] = None
 
     # A thumbnail version of the music's cover art
     cover_thumb: Media
