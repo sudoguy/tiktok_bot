@@ -1,5 +1,8 @@
+<h1 align="center" style="font-size: 3rem;">
+tiktok-bot
+</h1>
 <p align="center">
-<strong>tiktok-bot</strong> <em>- The most intelligent TikTok bot for Python.</em></p>
+ <em>The most intelligent TikTok bot for Python.</em></p>
 
 <p align="center">
 <a href="https://travis-ci.org/sudoguy/tiktok_bot">
