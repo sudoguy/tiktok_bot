@@ -1,4 +1,5 @@
-<p align="center"><strong>TikTok-Bot</strong> <em>- Free and smart bot for Python.</em></p>
+<p align="center">
+<strong>tiktok-bot</strong> <em>- The most intelligent TikTok bot for Python.</em></p>
 
 <p align="center">
 <a href="https://travis-ci.org/sudoguy/tiktok_bot">
@@ -7,8 +8,8 @@
 <a href="https://pepy.tech/project/tiktok-bot">
     <img src="https://pepy.tech/badge/tiktok-bot" alt="Downloads">
 </a>
-<a href="https://pypi.org/project/httpx/">
-    <img src="https://badge.fury.io/py/httpx.svg" alt="Package version">
+<a href="https://pypi.org/project/tiktok-bot/">
+    <img src="https://badge.fury.io/py/tiktok-bot.svg" alt="Package version">
 </a>
 </p>
 
@@ -40,4 +41,5 @@ Install with pip:
 ```shell
 pip install tiktok-bot
 ```
+
 tiktok-bot requires Python 3.6+
