@@ -189,6 +189,16 @@ class Post(BaseModel):
     # Details about the video in the post
     video: Video
 
+    @property
+    def video_url(self):
+        url = filter(lambda url: "watermark" in url, self.video.download_addr.url_list)
+
+        return next(url)
+
+    @property
+    def video_url_without_watermark(self):
+        return self.video_url.replace("watermark=1", "watermark=0")
+
 
 class GetPostResponse(BaseResponseData):
     aweme_detail: Post
