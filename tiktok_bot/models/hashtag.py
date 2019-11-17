@@ -9,10 +9,10 @@ class ListPostsInHashtagRequest(ListRequestParams, CountOffsetParams):
     ch_id: str
 
     # ??? - set to 0
-    query_type: int
+    query_type: int = 0
 
     # ??? - set to 5
-    type: int
+    type: int = 5
 
 
 class ListPostsInHashtagResponse(ListResponseData, CountOffsetParams):

@@ -25,7 +25,7 @@ class PostStatistics(BaseModel):
     digg_count: int
 
     # The number of times the post has been forwarded (looks unused?)
-    forward_count: Optional[int] = None
+    forward_count: Optional[int]
 
     # The number of times the post has been viewed - doesn't appear to be public, so always 0
     play_count: int
@@ -45,7 +45,7 @@ class PostStatus(BaseModel):
     download_status: int
 
     # True if the post is currently being reviewed
-    in_reviewing: Optional[bool] = None
+    in_reviewing: Optional[bool]
 
     # True if the post has been deleted
     is_delete: bool
@@ -54,13 +54,13 @@ class PostStatus(BaseModel):
     is_private: bool
 
     # True if the post contains content that is not allowed on the platform
-    is_prohibited: Optional[bool] = None
+    is_prohibited: Optional[bool]
 
     # 0 if the post is public
-    private_status: Optional[int] = None
+    private_status: Optional[int]
 
     # 1 if the post has been reviewed
-    reviewed: Optional[int] = None
+    reviewed: Optional[int]
 
 
 class PostTags(BaseModel):
@@ -68,10 +68,10 @@ class PostTags(BaseModel):
     type: int
 
     # The name of the hashtag
-    hashtag_name: Optional[str] = None
+    hashtag_name: Optional[str]
 
     # The ID of the tagged user
-    user_id: Optional[str] = None
+    user_id: Optional[str]
 
 
 class RiskInfo(BaseModel):
@@ -85,7 +85,7 @@ class RiskInfo(BaseModel):
     type: int
 
     # ??? - only present if the post has been flagged
-    vote: Optional[bool] = None
+    vote: Optional[bool]
 
     # True if a warning should be shown to the user
     warn: bool
@@ -93,22 +93,22 @@ class RiskInfo(BaseModel):
 
 class ShareInfo(BaseModel):
     # ???
-    bool_persist: Optional[int] = None
+    bool_persist: Optional[int]
 
     # The description used when sharing (if set)
     share_desc: str
 
     # The description used when sharing a link only (if set)
-    share_link_desc: Optional[str] = None
+    share_link_desc: Optional[str]
 
     # The quote used when sharing (if set)
-    share_quote: Optional[str] = None
+    share_quote: Optional[str]
 
     # The signature used when sharing (if set)
-    share_signature_desc: Optional[str] = None
+    share_signature_desc: Optional[str]
 
     # The signature URL used when sharing (if set)
-    share_signature_url: Optional[str] = None
+    share_signature_url: Optional[str]
 
     # The title used when sharing
     share_title: str
@@ -130,7 +130,7 @@ class StickerInfo(BaseModel):
 
 class Post(BaseModel):
     # Details about the author
-    author: Optional[CommonUserDetails] = None
+    author: Optional[CommonUserDetails]
 
     # The ID of the author
     author_user_id: str
@@ -148,10 +148,10 @@ class Post(BaseModel):
     desc: str
 
     # Details about the music used in the post
-    music: Optional[MusicTrack] = None
+    music: Optional[MusicTrack]
 
     # True if the end user should not be provided the option to download the video
-    prevent_download: Optional[bool] = None
+    prevent_download: Optional[bool]
 
     # An age rating for the post, e.g. 12
     rate: int
@@ -160,10 +160,10 @@ class Post(BaseModel):
     region: str
 
     # Risk information about the post
-    risk_infos: Optional[RiskInfo] = None
+    risk_infos: Optional[RiskInfo]
 
     # Information used when sharing the post
-    share_info: Optional[ShareInfo] = None
+    share_info: Optional[ShareInfo]
 
     # A link to the video on the musical.ly website that is used when sharing
     share_url: str
@@ -175,10 +175,10 @@ class Post(BaseModel):
     status: PostStatus
 
     # Information about the sticker used in the post
-    sticker_detail: Optional[StickerInfo] = None
+    sticker_detail: Optional[StickerInfo]
 
     # The ID of the sticker used in the post (looks to be deprecated by sticker_detail)
-    stickers: Optional[str] = None
+    stickers: Optional[str]
 
     # Tagged users and hashtags used in the description
     text_extra: List[PostTags]

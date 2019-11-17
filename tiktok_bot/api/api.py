@@ -8,9 +8,11 @@ from tiktok_bot.client import HTTPClient
 from tiktok_bot.models.category import ListCategoriesRequest, ListCategoriesResponse
 from tiktok_bot.models.feed import ListFeedRequest, ListFeedResponse, ListForYouFeedResponse
 from tiktok_bot.models.feed_enums import FeedType, PullType
+from tiktok_bot.models.hashtag import ListPostsInHashtagRequest, ListPostsInHashtagResponse
 from tiktok_bot.models.login import LoginRequest, LoginResponse
 from tiktok_bot.models.post import Post
 from tiktok_bot.models.search import (
+    ChallengeInfo,
     HashtagSearchResponse,
     HashtagSearchResult,
     SearchRequest,
@@ -155,6 +157,41 @@ class TikTokAPI:
 
                 results += response.user_list
                 pbar.update(len(response.user_list))
+
+                if not response.has_more or len(results) >= count:
+                    results = results[:count]
+                    logger.info(f"Found {len(results)} results")
+                    break
+
+        return results
+
+    def _search_posts_by_hashtag(
+        self, search_request: ListPostsInHashtagRequest
+    ) -> ListPostsInHashtagResponse:
+        "Search posts by hashtag id."
+
+        url = "aweme/v1/challenge/aweme/"
+
+        response = self.client.get(url=url, params=search_request.dict())
+
+        search = ListPostsInHashtagResponse(**response.json())
+
+        return search
+
+    def search_posts_by_hashtag(self, hashtag: ChallengeInfo, count: int) -> List[Post]:
+        "Search posts by hashtag with paginate."
+
+        results: List[Post] = []
+
+        logger.info(f'Search {count} posts with hashtag: "{hashtag.cha_name}"')
+
+        with tqdm(total=count, desc="Searching posts") as pbar:
+            for cursor in itertools.count(start=0, step=10):
+                search_request = ListPostsInHashtagRequest(ch_id=hashtag.cid, cursor=cursor)
+                response = self._search_posts_by_hashtag(search_request)
+
+                results += response.aweme_list
+                pbar.update(len(response.aweme_list))
 
                 if not response.has_more or len(results) >= count:
                     results = results[:count]

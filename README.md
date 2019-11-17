@@ -35,6 +35,9 @@ popular_posts = [post for post in my_feed if post.statistics.play_count > 1_000_
 
 # extract video urls without watermark (every post has helpers)
 urls = [post.video_url_without_watermark for post in popular_posts]
+
+# searching videos by hashtag name
+posts = bot.search_posts_by_hashtag("cat", count=50)
 ```
 
 ## Installation
