@@ -12,6 +12,7 @@ from tiktok_bot.models.login import LoginRequest, LoginResponse
 from tiktok_bot.models.post import Post
 from tiktok_bot.models.search import (
     HashtagSearchResponse,
+    HashtagSearchResult,
     SearchRequest,
     UserSearchRequest,
     UserSearchResponse,
@@ -162,7 +163,7 @@ class TikTokAPI:
 
         return results
 
-    def search_hashtags(self, hashtag_search_request: SearchRequest) -> HashtagSearchResponse:
+    def _search_hashtags(self, hashtag_search_request: SearchRequest) -> HashtagSearchResponse:
         "Searches for hashtags."
 
         url = "aweme/v1/challenge/search/"
@@ -172,3 +173,25 @@ class TikTokAPI:
         hashtag_search = HashtagSearchResponse(**response.json())
 
         return hashtag_search
+
+    def search_hashtags(self, keyword: str, count: int) -> List[HashtagSearchResult]:
+        "Searches for hashtags with paginate."
+
+        results: List[HashtagSearchResponse] = []
+
+        logger.info(f'Search {count} hashtags with keyword: "{keyword}"')
+
+        with tqdm(total=count, desc="Searching hashtags") as pbar:
+            for cursor in itertools.count(start=0, step=10):
+                search_request = SearchRequest(keyword=keyword, cursor=cursor)
+                response = self._search_hashtags(search_request)
+
+                results += response.challenge_list
+                pbar.update(len(response.challenge_list))
+
+                if not response.has_more or len(results) >= count:
+                    results = results[:count]
+                    logger.info(f"Found {len(results)} results")
+                    break
+
+        return results

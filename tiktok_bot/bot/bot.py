@@ -9,6 +9,7 @@ from tiktok_bot.models.category import Category, ListCategoriesRequest
 from tiktok_bot.models.feed import ListFeedRequest
 from tiktok_bot.models.feed_enums import FeedType, PullType
 from tiktok_bot.models.post import Post
+from tiktok_bot.models.search import ChallengeInfo
 from tiktok_bot.models.user import CommonUserDetails, UserProfile
 
 
@@ -36,6 +37,13 @@ class TikTokBot:
         users = [user.user_info for user in users_search]
 
         return users
+
+    def search_hashtags(self, keyword: str, count: int = 6) -> List[ChallengeInfo]:
+        hashtags_search = self.api.search_hashtags(keyword=keyword, count=count)
+
+        hashtags = [tag.challenge_info for tag in hashtags_search]
+
+        return hashtags
 
     def list_for_you_feed(self, count: int = 6) -> List[Post]:
         feed = self.api.list_for_you_feed(count=count)
