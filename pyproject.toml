@@ -2,9 +2,18 @@
 name = "tiktok_bot"
 version = "0.6.1"
 description = "Tik Tok API"
+
+license = "MIT"
 authors = ["Evgeny Kemerov <eskemerov@gmail.com>"]
+
 readme = "README.md"
+include = ["CHANGELOG.md", "LICENSE"]
+
+repository = "https://github.com/sudoguy/tiktok_bot/"
 homepage = "https://github.com/sudoguy/tiktok_bot/"
+
+keywords = ["tiktok", "bot", "api", "wrapper", "tiktokbot"]
+
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Environment :: Console",
@@ -15,8 +24,6 @@ classifiers = [
     "Operating System :: OS Independent",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-keywords = ["tiktok", "bot", "api", "wrapper", "tiktokbot"]
-license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.6"
