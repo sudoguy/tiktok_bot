@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tiktok_bot"
-version = "0.6.0"
+version = "0.6.1"
 description = "Tik Tok API"
 authors = ["Evgeny Kemerov <eskemerov@gmail.com>"]
 readme = "README.md"
