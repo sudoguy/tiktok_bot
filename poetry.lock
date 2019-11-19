@@ -301,7 +301,7 @@ description = "Chromium HSTS Preload list as a Python package and updated daily"
 name = "hstspreload"
 optional = false
 python-versions = ">=3.6"
-version = "2019.11.4"
+version = "2019.11.18"
 
 [[package]]
 category = "dev"
@@ -317,7 +317,7 @@ description = "The next generation HTTP client."
 name = "httpx"
 optional = false
 python-versions = ">=3.6"
-version = "0.7.6"
+version = "0.7.7"
 
 [package.dependencies]
 certifi = "*"
@@ -557,13 +557,14 @@ description = "A Material Design theme for MkDocs"
 name = "mkdocs-material"
 optional = false
 python-versions = "*"
-version = "4.4.3"
+version = "4.5.0"
 
 [package.dependencies]
 Pygments = ">=2.2"
+markdown = "<3.2"
 mkdocs = ">=1"
 mkdocs-minify-plugin = ">=0.2"
-pymdown-extensions = ">=4.11"
+pymdown-extensions = ">=6.2,<6.3"
 
 [[package]]
 category = "dev"
@@ -796,7 +797,7 @@ description = "Extension pack for Python Markdown."
 name = "pymdown-extensions"
 optional = false
 python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*"
-version = "6.1"
+version = "6.2"
 
 [package.dependencies]
 Markdown = ">=3.0.1"
@@ -816,7 +817,7 @@ description = "pytest: simple powerful testing with Python"
 name = "pytest"
 optional = false
 python-versions = ">=3.5"
-version = "5.2.2"
+version = "5.2.4"
 
 [package.dependencies]
 atomicwrites = ">=1.0"
@@ -1178,14 +1179,14 @@ hpack = [
     {file = "hpack-3.0.0.tar.gz", hash = "sha256:8eec9c1f4bfae3408a3f30500261f7e6a65912dc138526ea054f9ad98892e9d2"},
 ]
 hstspreload = [
-    {file = "hstspreload-2019.11.4.tar.gz", hash = "sha256:bf3fe200e3ef9847bb52242037719650d908ae79e976d1610a9bdc5f49c99473"},
+    {file = "hstspreload-2019.11.18.tar.gz", hash = "sha256:448c5b9505954881bd51cf08f8ef34bb41a5bc95160815b3c830175580480f5a"},
 ]
 htmlmin = [
     {file = "htmlmin-0.1.12.tar.gz", hash = "sha256:50c1ef4630374a5d723900096a961cff426dff46b48f34d194a81bbe14eca178"},
 ]
 httpx = [
-    {file = "httpx-0.7.6-py2.py3-none-any.whl", hash = "sha256:f6c079c736462f983dfe63e037f77da65af231bebd5d507de0ab966592441a8f"},
-    {file = "httpx-0.7.6.tar.gz", hash = "sha256:03144a9a5a8bc52c95e397eb5cb0db02cf4cdc89f08c09dded871c0269486073"},
+    {file = "httpx-0.7.7-py2.py3-none-any.whl", hash = "sha256:26ed044a022df971fe599a256036eaf621353e3135fffa1d9e72338d9bd60e08"},
+    {file = "httpx-0.7.7.tar.gz", hash = "sha256:97646a1ce129ce0b5b53934615a6f6236f08d43666b450c3974433d0e717ecfb"},
 ]
 hyperframe = [
     {file = "hyperframe-5.2.0-py2.py3-none-any.whl", hash = "sha256:5187962cb16dcc078f23cb5a4b110098d546c3f41ff2d4038a9896893bbd0b40"},
@@ -1284,8 +1285,8 @@ mkdocs = [
     {file = "mkdocs-1.0.4.tar.gz", hash = "sha256:17d34329aad75d5de604b9ed4e31df3a4d235afefdc46ce7b1964fddb2e1e939"},
 ]
 mkdocs-material = [
-    {file = "mkdocs-material-4.4.3.tar.gz", hash = "sha256:e4a9ac73db7c65fdae1dbd248091e4b0a3f5db3e6bf87a46bb457db013a045e4"},
-    {file = "mkdocs_material-4.4.3-py2.py3-none-any.whl", hash = "sha256:a5246b550299d00a135a3f739e70ac6db73d7127480f0fecbda113d0095a674a"},
+    {file = "mkdocs-material-4.5.0.tar.gz", hash = "sha256:e0ccb48f21e671acc2f25e37ff1ea7aba0bcfe799393a7c687a97e07f9cb8528"},
+    {file = "mkdocs_material-4.5.0-py2.py3-none-any.whl", hash = "sha256:41e8041e1dba6b6fa6624e21d73c1c700f53e60400429a4c7ee10b769b5136b0"},
 ]
 mkdocs-minify-plugin = [
     {file = "mkdocs-minify-plugin-0.2.1.tar.gz", hash = "sha256:3000a5069dd0f42f56a8aaf7fd5ea1222c67487949617e39585d6b6434b074b6"},
@@ -1383,16 +1384,16 @@ pygments = [
     {file = "Pygments-2.4.2.tar.gz", hash = "sha256:881c4c157e45f30af185c1ffe8d549d48ac9127433f2c380c24b84572ad66297"},
 ]
 pymdown-extensions = [
-    {file = "pymdown-extensions-6.1.tar.gz", hash = "sha256:960486dea995f1759dfd517aa140b3d851cd7b44d4c48d276fd2c74fc4e1bce9"},
-    {file = "pymdown_extensions-6.1-py2.py3-none-any.whl", hash = "sha256:24c1a0afbae101c4e2b2675ff4dd936470a90133f93398b9cbe0c855e2d2ec10"},
+    {file = "pymdown-extensions-6.2.tar.gz", hash = "sha256:27953f071d37b63d418738f75d847d824c0e4430e93f085cfdd9f8dc08a8c5c3"},
+    {file = "pymdown_extensions-6.2-py2.py3-none-any.whl", hash = "sha256:328b9e114925729e0789558a94325be8e7ca9e0323ed2a2b705d9bc1de4d2716"},
 ]
 pyparsing = [
     {file = "pyparsing-2.4.5-py2.py3-none-any.whl", hash = "sha256:20f995ecd72f2a1f4bf6b072b63b22e2eb457836601e76d6e5dfcd75436acc1f"},
     {file = "pyparsing-2.4.5.tar.gz", hash = "sha256:4ca62001be367f01bd3e92ecbb79070272a9d4964dce6a48a82ff0b8bc7e683a"},
 ]
 pytest = [
-    {file = "pytest-5.2.2-py3-none-any.whl", hash = "sha256:58cee9e09242937e136dbb3dab466116ba20d6b7828c7620f23947f37eb4dae4"},
-    {file = "pytest-5.2.2.tar.gz", hash = "sha256:27abc3fef618a01bebb1f0d6d303d2816a99aa87a5968ebc32fe971be91eb1e6"},
+    {file = "pytest-5.2.4-py3-none-any.whl", hash = "sha256:8e256fe71eb74e14a4d20a5987bb5e1488f0511ee800680aaedc62b9358714e8"},
+    {file = "pytest-5.2.4.tar.gz", hash = "sha256:ff0090819f669aaa0284d0f4aad1a6d9d67a6efdc6dd4eb4ac56b704f890a0d6"},
 ]
 pytest-cov = [
     {file = "pytest-cov-2.8.1.tar.gz", hash = "sha256:cc6742d8bac45070217169f5f72ceee1e0e55b0221f54bcf24845972d3a47f2b"},
@@ -1484,11 +1485,6 @@ typed-ast = [
     {file = "typed_ast-1.4.0-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:d7c45933b1bdfaf9f36c579671fec15d25b06c8398f113dab64c18ed1adda01d"},
     {file = "typed_ast-1.4.0-cp37-cp37m-win32.whl", hash = "sha256:d755f03c1e4a51e9b24d899561fec4ccaf51f210d52abdf8c07ee2849b212a36"},
     {file = "typed_ast-1.4.0-cp37-cp37m-win_amd64.whl", hash = "sha256:2b907eb046d049bcd9892e3076c7a6456c93a25bebfe554e931620c90e6a25b0"},
-    {file = "typed_ast-1.4.0-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:fdc1c9bbf79510b76408840e009ed65958feba92a88833cdceecff93ae8fff66"},
-    {file = "typed_ast-1.4.0-cp38-cp38-manylinux1_i686.whl", hash = "sha256:7954560051331d003b4e2b3eb822d9dd2e376fa4f6d98fee32f452f52dd6ebb2"},
-    {file = "typed_ast-1.4.0-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:48e5b1e71f25cfdef98b013263a88d7145879fbb2d5185f2a0c79fa7ebbeae47"},
-    {file = "typed_ast-1.4.0-cp38-cp38-win32.whl", hash = "sha256:1170afa46a3799e18b4c977777ce137bb53c7485379d9706af8a59f2ea1aa161"},
-    {file = "typed_ast-1.4.0-cp38-cp38-win_amd64.whl", hash = "sha256:838997f4310012cf2e1ad3803bce2f3402e9ffb71ded61b5ee22617b3a7f6b6e"},
     {file = "typed_ast-1.4.0.tar.gz", hash = "sha256:66480f95b8167c9c5c5c87f32cf437d585937970f3fc24386f313a4c97b44e34"},
 ]
 typing-extensions = [

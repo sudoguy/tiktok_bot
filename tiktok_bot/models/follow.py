@@ -13,7 +13,7 @@ from .request import (
 from .user import CommonUserDetails
 
 
-class FollowRequest(BaseResponseData):
+class FollowRequest(BaseModel):
     # The id of the user to follow
     user_id: str
 
