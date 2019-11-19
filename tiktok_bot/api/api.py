@@ -8,6 +8,7 @@ from tiktok_bot.client import HTTPClient
 from tiktok_bot.models.category import ListCategoriesRequest, ListCategoriesResponse
 from tiktok_bot.models.feed import ListFeedRequest, ListFeedResponse, ListForYouFeedResponse
 from tiktok_bot.models.feed_enums import FeedType, PullType
+from tiktok_bot.models.follow import FollowRequest, FollowResponse
 from tiktok_bot.models.hashtag import ListPostsInHashtagRequest, ListPostsInHashtagResponse
 from tiktok_bot.models.login import LoginRequest, LoginResponse
 from tiktok_bot.models.post import Post
@@ -48,13 +49,13 @@ class TikTokAPI:
 
         return login
 
-    def login_with_email(self, email: str, password: str):
+    def login_with_email(self, email: str, password: str, captcha: str = ""):
         """ FIXME: Under development """
 
         email = self.encrypt_with_XOR(email)
         password = self.encrypt_with_XOR(password)
 
-        request = LoginRequest(email=email, password=password)
+        request = LoginRequest(email=email, password=password, captcha=captcha)
 
         return self.login(request)
 
@@ -211,10 +212,21 @@ class TikTokAPI:
 
         return hashtag_search
 
+    def _follow(self, request: FollowRequest) -> FollowResponse:
+        "Send follow request."
+
+        url = "aweme/v1/commit/follow/user/"
+
+        response = self.client.get(url=url, params=request.dict())
+
+        follow = FollowResponse(**response.json())
+
+        return follow
+
     def search_hashtags(self, keyword: str, count: int) -> List[HashtagSearchResult]:
         "Searches for hashtags with paginate."
 
-        results: List[HashtagSearchResponse] = []
+        results: List[HashtagSearchResult] = []
 
         logger.info(f'Search {count} hashtags with keyword: "{keyword}"')
 

@@ -45,12 +45,12 @@ class TikTokBot:
 
         return hashtags
 
-    def search_posts_by_hashtag(self, hashtag_name: str, count: int = 6) -> List[ChallengeInfo]:
+    def search_posts_by_hashtag(self, hashtag_name: str, count: int = 6) -> List[Post]:
         tags = self.search_hashtags(keyword=hashtag_name, count=1)
 
         if not tags:
             logger.info(f'Tag "{hashtag_name}" not found')
-            return
+            return []
 
         posts = self.api.search_posts_by_hashtag(hashtag=tags[0], count=count)
 
