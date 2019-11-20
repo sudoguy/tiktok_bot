@@ -1,8 +1,9 @@
+from collections import deque
 from time import time
-from typing import Optional
+from typing import Deque, Optional
 from uuid import uuid4
 
-from httpx import Client
+from httpx import Client, Response
 from loguru import logger
 
 from .utils import generate_as, generate_cp, generate_mas
@@ -14,10 +15,13 @@ class HTTPClient:
         base_url: str,
         default_headers: Optional[dict] = None,
         default_params: Optional[dict] = None,
+        history_len: int = 30,
     ):
         self.base_url = base_url
         self.default_headers = default_headers or {}
         self.default_params = default_params or {}
+
+        self.history: Deque[Response] = deque(maxlen=history_len)
 
         self.http_client = Client(
             base_url=self.base_url, headers=default_headers, params=self.default_params
@@ -27,22 +31,18 @@ class HTTPClient:
         custom_headers = headers or {}
         all_params = {**self._generate_params(), **params}
 
-        request_uuid = uuid4().hex
-        # Add to logger request_uuid
-        logger_ctx = logger.bind(request_uuid=request_uuid)
-
-        logger_ctx.debug(
-            f"Sending request to {url}", params=all_params, custom_headers=custom_headers
-        )
+        logger.debug(f"Sending request to {url}", params=all_params, custom_headers=custom_headers)
         response = self.http_client.get(url=url, params=all_params, headers=custom_headers)
+
+        self.history.append(response)
 
         body = response.text or "is empty!"
 
-        logger_ctx.debug(f"Response return status_code: {response.status_code}, body: {body}")
+        logger.debug(f"Response return status_code: {response.status_code}, body: {body}")
 
         for cookie_name, cookie_data in response.cookies.items():
             self.http_client.cookies.set(cookie_name, cookie_data)
-            logger_ctx.debug(f"New cookies: {dict(response.cookies)}")
+            logger.debug(f"New cookies: {dict(response.cookies)}")
 
         return response
 
@@ -54,11 +54,7 @@ class HTTPClient:
         # merge parameters
         all_params = {**self._generate_params(), **custom_params}
 
-        request_uuid = uuid4().hex
-        # Bind to logger request_uuid
-        logger_ctx = logger.bind(request_uuid=request_uuid)
-
-        logger_ctx.debug(
+        logger.debug(
             f"Sending request to {url}", params=all_params, custom_headers=custom_headers, data=data
         )
 
@@ -66,12 +62,14 @@ class HTTPClient:
             url=url, params=all_params, data=data, headers=custom_headers,
         )
 
+        self.history.append(response)
+
         body = response.text or "is empty!"
-        logger_ctx.debug(f"Response return status_code: {response.status_code}, body: {body}")
+        logger.debug(f"Response return status_code: {response.status_code}, body: {body}")
 
         for cookie_name, cookie_data in response.cookies.items():
             self.http_client.cookies.set(cookie_name, cookie_data)
-            logger_ctx.debug(f"New cookies: {dict(response.cookies)}")
+            logger.debug(f"New cookies: {dict(response.cookies)}")
 
         return response
 

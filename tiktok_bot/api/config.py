@@ -12,7 +12,7 @@ DEFAULT_PARAMS = {
     "update_version_code": "2018111632",
     "channel": "googleplay",
     "device_platform": "android",
-    "build_number": "9.1.0",
+    "build_number": "9.9.0",
     "version_code": 910,
     "timezone_name": "America/New_York",
     "timezone_offset": 36000,
@@ -33,9 +33,11 @@ DEFAULT_PARAMS = {
     "pass-region": 1,
     "pass-route": 1,
     "app_type": "normal",
+    # "iid": "6742828344465966597",
+    # "device_id": "6746627788566021893",
     # ToDo: Make it dynamic
-    "iid": "6620659482206930694",
-    "device_id": "6594726280552547846",
+    "iid": "6749111388298184454",
+    "device_id": "6662384847253865990",
 }
 
 DEFAULT_HEADERS = {
