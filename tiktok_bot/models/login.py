@@ -7,7 +7,7 @@ class LoginRequest(BaseModel):
     # Unsure, but looks to be hard-coded to 1
     mix_mode: int = 1
 
-    # The unique username ("musername") of the user
+    # The unique username ("username") of the user
     username: str = ""
 
     # The email address associated with the user account
