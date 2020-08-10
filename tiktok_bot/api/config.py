@@ -47,7 +47,7 @@ DEFAULT_HEADERS = {
     + f" (Linux; U; Android {DEFAULT_PARAMS['os_version']};"
     + f" {DEFAULT_PARAMS['language']}_{DEFAULT_PARAMS['region']};"
     + f" {DEFAULT_PARAMS['device_type']};"
-    + f" Build/NHG47Q; Cronet/58.0.2991.0)",
+    + " Build/NHG47Q; Cronet/58.0.2991.0)",
     "Accept-Encoding": "gzip",
     "Accept": "*/*",
     "Connection": "keep-alive",
