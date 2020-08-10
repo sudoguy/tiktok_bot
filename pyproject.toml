@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tiktok_bot"
-version = "0.6.3"
+version = "0.6.4"
 description = "Tik Tok API"
 
 license = "MIT"
