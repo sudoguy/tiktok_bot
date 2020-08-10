@@ -1,3 +1,8 @@
+# This project is no longer under development.
+# A NEW project is being developed here: [sudoguy/tiktokpy](https://github.com/sudoguy/tiktokpy/)
+
+---
+
 <h1 align="center" style="font-size: 3rem;">
 tiktok-bot
 </h1>
